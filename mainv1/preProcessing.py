@@ -37,32 +37,26 @@ def detect_edges(image):
     
     return edges
 
-def find_chessboard_contour(edges):
-    # Find contours in the edge-detected image
+def find_chessboard_contours(edges, original_image):
+    # Step 1: Find contours in the edge-detected image
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
-    # Sort contours by area and find the largest rectangle-like contour (assumed to be the chessboard)
-    contours = sorted(contours, key=cv2.contourArea, reverse=True)
-    chessboard_contour = None
-    
+    # Step 2: Filter contours based on area to find the chessboard and pieces
+    valid_contours = []
     for contour in contours:
-        # Approximate the contour to simplify its shape
-        epsilon = 0.02 * cv2.arcLength(contour, True)
-        approx = cv2.approxPolyDP(contour, epsilon, True)
-        
-        # Check if the approximated contour has 4 points (a rectangle)
-        if len(approx) == 4:
-            chessboard_contour = approx
-            break
-    
-    # Draw the detected chessboard contour on the original image for verification
-    image_with_contour = image.copy()
-    if chessboard_contour is not None:
-        cv2.drawContours(image_with_contour, [chessboard_contour], -1, (0, 255, 0), 3)
-    
+        area = cv2.contourArea(contour)
+        if area > 0.1:  # Example area threshold, adjust as needed
+            valid_contours.append(contour)
+
+    # Step 3: Draw contours on the original image for visualization
+    image_with_contours = original_image.copy()
+    cv2.drawContours(image_with_contours, valid_contours, -1, (0, 255, 0), 2)  # Draw contours in green
+
+    # Display the result
     plt.figure(figsize=(6, 6))
-    plt.title("Chessboard Contour Detection")
-    plt.imshow(cv2.cvtColor(image_with_contour, cv2.COLOR_BGR2RGB))
+    plt.title("Detected Contours")
+    plt.imshow(cv2.cvtColor(image_with_contours, cv2.COLOR_BGR2RGB))
+    plt.axis('off')  # Hide axes
     plt.show()
     
-    return chessboard_contour
+    return valid_contours
