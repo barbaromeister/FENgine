@@ -16,9 +16,13 @@ A tool that converts chessboard images into FEN (Forsyth-Edwards Notation) forma
 
 To get started, clone the repository and install the required dependencies:
 
-+Dependencies
+#Dependencies
 +Python 3.x
+
 +OpenCV
+
 +TensorFlow / Keras
+
 +NumPy
+
 +Matplotlib (for visualizing the results)
