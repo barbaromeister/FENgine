@@ -27,3 +27,13 @@ To get started, clone the repository and install the required dependencies:
 +NumPy
 
 +Matplotlib (for visualizing the results)
+
+##  Preprocessing Steps
+
+![image](https://github.com/user-attachments/assets/e342b216-1901-420c-bb10-f7b8d2357d13)
+
+![image](https://github.com/user-attachments/assets/ae4ddcef-27c1-4178-ba4d-389adf760fe1)
+
+
+##  Next Step: Contour Detection !
+... TO BE CONTINUE
