@@ -36,4 +36,5 @@ To get started, clone the repository and install the required dependencies:
 
 ![image](https://github.com/user-attachments/assets/51f313f7-db30-4b22-a125-d0c32b599bda)
 
+##  Next Step Training Model with Chess pieces to recognize them correct way!
 
